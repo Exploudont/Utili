@@ -5,9 +5,9 @@ package personalinformation;
  *
  * @author Daniele Longobardi
  * @since 02/02/2023
- * @version 1.0
+ * @version 1.0.1
  */
-public enum Gender {
+public enum Gender implements java.io.Serializable {
 	/**
 	 * Rappresentation for the male gender.
 	 */

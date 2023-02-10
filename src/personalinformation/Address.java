@@ -5,9 +5,9 @@ package personalinformation;
  *
  * @author Daniele Longobardi
  * @since 02/02/2023
- * @version 1.0
+ * @version 1.0.1
  */
-public class Address {
+public class Address implements java.io.Serializable {
 	
 	/**
 	 * Constructs a new {@code Address} specifying it's attributes.

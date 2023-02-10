@@ -9,9 +9,9 @@ import java.util.Locale;
  * 
  * @author Daniele Longobardi
  * @since 02/02/2023
- * @version 1.0
+ * @version 1.0.1
  */
-public class Person {
+public class Person implements java.io.Serializable {
 	
 	/**
 	 * Constructs a new {@code Person} specifying it's attributes.

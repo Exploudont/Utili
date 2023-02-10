@@ -9,9 +9,9 @@ import java.util.Locale;
  * 
  * @author Daniele Longobardi
  * @since 03/02/2023
- * @version 1.0.1
+ * @version 1.0.2
  */
-public class Anagraphic {
+public class Anagraphic implements java.io.Serializable {
 	
 	/**
 	 * Constructs a new {@code Anagraphic} specifying it's attributes.
