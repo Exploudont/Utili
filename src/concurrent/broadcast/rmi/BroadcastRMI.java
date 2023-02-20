@@ -20,6 +20,8 @@ public class BroadcastRMI<Data> extends UnicastRemoteObject
 
 	/**
 	 * Constructs a new empty {@code BroadcastRMI}.
+	 *
+	 * @throws RemoteException
 	 */
 	public BroadcastRMI() throws RemoteException {
 		super();
