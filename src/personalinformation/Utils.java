@@ -95,9 +95,19 @@ public class Utils {
 		return matcher.matches();
 	}
 	
-	
-	/*
+	/**
+	 * Verify if a {@code String} contains only digit values.
+	 *
+	 * @param str the {@code String} to verify.
+	 * 
+	 * @throws NullPointerException is the parameter is {@code null}.
+	 *
+	 * @return return {@code true} only if contains only digit values, {@code false} otherwise.
+	 */
 	public static boolean containsOnlyDigits(final String str) {
+		if(str == null)
+			throw new NullPointerException("Value cannot be null. Parameter name: str");
+		
 		for(int i=0 ; i<str.length() ; i++)
 			if(!Character.isDigit(str.charAt(i)))
 				return false;
@@ -105,13 +115,25 @@ public class Utils {
 		return true;
 	}
 	
+	/**
+	 * Verify if a {@code String} contains only alphabetic values.
+	 *
+	 * @param str the {@code String} to verify.
+	 * 
+	 * @throws NullPointerException is the parameter is {@code null}.
+	 *
+	 * @return return {@code true} only if contains only alphabetic values, {@code false} otherwise.
+	 */
 	public static boolean containsOnlyAlphabetic(final String str) {
+		if(str == null)
+			throw new NullPointerException("Value cannot be null. Parameter name: str");
+		
 		for(int i=0 ; i<str.length() ; i++)
 			if(!Character.isAlphabetic(str.charAt(i)))
 				return false;
 			
 		return true;
 	}
-	*/
+	
 	
 }
