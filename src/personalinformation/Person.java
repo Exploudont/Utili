@@ -1,5 +1,11 @@
 package personalinformation;
 
+import personalinformation.contact.Contact;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.ArrayList;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -14,182 +20,136 @@ import java.util.Locale;
 public class Person implements java.io.Serializable {
 	
 	/**
-	 * Constructs a new {@code Person} specifying it's attributes.
-	 *
-	 * @param name the {@code String} rappresentation of the name.
-	 * @param surname the {@code String} rappresentation of the surname.
-	 * @param gender the {@code Gender} rappresentation of the gender.
-	 * @param birthday the {@code Date} rappresentation of the date of birth.
-	 * @param fiscal_code the {@code String} rappresentation of the fiscal code.
+	 * Constructs a new empty {@code Person}.
 	 */
-	public Person(String name, String surname, Gender gender, Date birthday, String fiscal_code) {
-		setName(name);
-		setSurname(surname);
-		setGender(gender);
-		setBirthday(birthday);
-		setFiscalCode(fiscal_code);
+	private Person() {
+		contacts = new ArrayList<Contact>();
 	}
 	
 	/**
 	 * Constructs a new {@code Person} specifying it's attributes.
 	 *
-	 * @param name the {@code String} rappresentation of the name.
-	 * @param surname the {@code String} rappresentation of the surname.
-	 * @param gender the {@code Gender} rappresentation of the gender.
-	 * @param birthday the {@code String} rappresentation of the date of birth.
-	 * @param fiscal_code the {@code String} rappresentation of the fiscal code.
+	 * @param anagraphic the anagraphic of a person.
+	 * @param address the address of a person.
 	 */
-	public Person(String name, String surname, Gender gender, String birthday, String fiscal_code) {
-		this(name, surname, gender, new Date(birthday), fiscal_code);
+	public Person(Anagraphic anagraphic, Address address) {
+		this();
+		setAnagraphic(anagraphic);
+		setAddress(address);
 	}
 	
 	/**
-	 * Return the value of the name.
+	 * Constructs a new {@code Person} specifying it's attributes.
 	 *
-	 * @return return the {@code String} rapresentation of the name.
+	 * @param anagraphic the anagraphic of a person.
+	 * @param address the address of a person.
+	 * @param contacts the contacts of a person
 	 */
-	public String getName() {
-		return this.name;
-	}
-
-	/**
-	 * Return the value of the surname.
-	 *
-	 * @return return the {@code String} rapresentation of the surname.
-	 */
-	public String getSurname() {
-		return this.surname;
-	}
-
-	/**
-	 * Return the value of the birthday.
-	 *
-	 * @return return the {@code Date} rapresentation of the birthday.
-	 */
-	public Date getBirthday() {
-		return this.birthday;
-	}
-
-	/**
-	 * Return the value of the fiscal code.
-	 *
-	 * @return return the {@code String} rapresentation of the fiscal code.
-	 */
-	public String getFiscalCode() {
-		return this.fiscal_code;
-	}
-
-	/**
-	 * Return the value of the gender.
-	 *
-	 * @return return the {@code Gender} rapresentation of the gender.
-	 */
-	public Gender getGender() {
-		return this.gender;
+	public Person(Anagraphic anagraphic, Address address, Collection<Contact> contacts) {
+		this(anagraphic, address);
+		addContact(contacts);
 	}
 	
 	/**
-	 * Set the value of the name.
+	 * Return the value of the anagraphic.
 	 *
-	 * @param name the {@code String} rappresentation of the name.
-	 *
-	 * @throws NullPointerException if the value is {@code null}.
-	 * @throws IllegalArgumentException if the value is an empty {@code String}.
+	 * @return the value of the anagraphic.
 	 */
-	protected void setName(String name) {
-		if(name == null)
-			throw new NullPointerException("Value cannot be null. Parameter name: name");
-		
-		if(name.isEmpty())
-			throw new IllegalArgumentException("Value cannot be empty. Parameter name: name");
-		
-		// no check for minimum length
-		
-		this.name = name.toUpperCase();
+	public Anagraphic getAnagraphic() {
+		return this.anagraphic;
 	}
 	
 	/**
-	 * Set the value of the surname.
+	 * Return the value of the address.
 	 *
-	 * @param surname the {@code String} rappresentation of the surname.
-	 *
-	 * @throws NullPointerException if the value is {@code null}.
-	 * @throws IllegalArgumentException if the value is an empty {@code String}.
+	 * @return the value of the address.
 	 */
-	protected void setSurname(String surname) {
-		if(surname == null)
-			throw new NullPointerException("Value cannot be null. Parameter name: surname");
-		
-		if(surname.isEmpty())
-			throw new IllegalArgumentException("Value cannot be empty. Parameter name: surname");
-		
-		// no check for minimum length
-		
-		this.surname = surname.toUpperCase();
+	public Address getAddress() {
+		return this.address;
 	}
 	
 	/**
-	 * Set the value of the birthday.
+	 * Return the value of the contacts.
 	 *
-	 * @param birthday the {@code Date} rappresentation of the birthday.
-	 *
-	 * @throws IllegalArgumentException if the value is not a valid {@code Date}.
+	 * @return the value of the contacts.
 	 */
-	protected void setBirthday(Date birthday) {		
-		if(!Utils.isValidBirthday(birthday))
-			throw new IllegalArgumentException("Value must be a valid date. Parameter name: birthday");
-		
-		this.birthday = birthday;
+	public List<Contact> getContacts() {
+		return this.contacts;
 	}
 	
 	/**
-	 * Set the value of the fiscal code.
+	 * Add a {@code Collection} of contacts.
 	 *
-	 * @param fiscal_code the {@code String} rappresentation of the fiscal code.
-	 *
-	 * @throws IllegalArgumentException if the value is not a valid fiscal code.
+	 * @param contacts the contacts
 	 */
-	protected void setFiscalCode(String fiscal_code) {
-		if(!Utils.isFiscalCodeValid(fiscal_code))
-			throw new IllegalArgumentException("Value must be a valid fiscal code. Parameter name: fiscal_code");
-		
-		this.fiscal_code = fiscal_code.toUpperCase();
+	public void addContact(Collection<Contact> contacts) {
+		for(Contact c : contacts)
+			addContact(c);
 	}
 	
 	/**
-	 * Set the value of the gender.
+	 * Add a contact.
 	 *
-	 * @param gender the {@code Gender} rappresentation of the gender.
+	 * @param contact the contact
 	 *
-	 * @throws NullPointerException if the value is {@code null}.
+	 * @throw NullPointerException if the value is {@code null}.
 	 */
-	protected void setGender(Gender gender) {
-		if(gender == null)
-			throw new NullPointerException("Value cannot be null. Parameter name: gender");
+	public void addContact(Contact contact) {
+		if(address == null)
+			throw new NullPointerException("Value cannot be null. Parameter name: address");
 		
-		this.gender = gender;
+		this.contacts.add(contact);
+	}
+	
+	/**
+	 * Set the value of the anagraphic.
+	 *
+	 * @param anagraphic the anagraphic
+	 *
+	 * @throw NullPointerException if the value is {@code null}.
+	 */
+	protected void setAnagraphic(Anagraphic anagraphic) {
+		if(anagraphic == null)
+			throw new NullPointerException("Value cannot be null. Parameter name: anagraphic");
+		
+		this.anagraphic = anagraphic;
+	}
+	
+	/**
+	 * Set the value of the address.
+	 *
+	 * @param address the address
+	 *
+	 * @throw NullPointerException if the value is {@code null}.
+	 */
+	protected void setAddress(Address address) {
+		if(address == null)
+			throw new NullPointerException("Value cannot be null. Parameter name: address");
+		
+		this.address = address;
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("name> " + getName());
-		sb.append("\nsurname> " + getSurname());
-		sb.append("\nbirthday> " + BIRTHDAY_FORMAT.format(getBirthday()));
-		sb.append("\nfiscal code> " + getFiscalCode());
-		sb.append("\ngender> " + getGender().toString());
+		sb.append("== Anagraphic ==\n");
+		sb.append(getAnagraphic().toString());
+		
+		sb.append("\n== Address ==\n");
+		sb.append(getAddress().toString());
+		
+		for(Contact c : getContacts())
+			sb.append("\n== Contact ==\n" + c.toString());
+		
+		//getContacts().forEach(c -> sb.append("== Contact ==\n" + c.toString()));
 		
 		return sb.toString();
 	}
-	
-	private static final DateFormat BIRTHDAY_FORMAT = DateFormat.getDateInstance(DateFormat.SHORT, Locale.TAIWAN);
-	
-	private String name;
-	private String surname;
-	private Date birthday;
-	private String fiscal_code;
-	private Gender gender;
+		
+	private Anagraphic anagraphic;
+	private Address address;
+	private List<Contact> contacts;
 }
 
 

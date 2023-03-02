@@ -20,7 +20,7 @@ public class Utils {
 		final String FISCAL_CODE_REGEX = "[a-z]{6}[0-9]{2}[a-z][0-9]{2}[a-z][0-9]{3}[a-z]";
 		FISCAL_CODE_PARSER = Pattern.compile(FISCAL_CODE_REGEX, Pattern.CASE_INSENSITIVE);
 		
-		final String CAP_REGEX = "[0-9]{6}";
+		final String CAP_REGEX = "[0-9]{5}";
 		CAP_PARSER = Pattern.compile(CAP_REGEX);
 	}
 	
@@ -100,9 +100,9 @@ public class Utils {
 	 *
 	 * @param str the {@code String} to verify.
 	 * 
-	 * @throws NullPointerException is the parameter is {@code null}.
-	 *
 	 * @return return {@code true} only if contains only digit values, {@code false} otherwise.
+	 *
+	 * @throws NullPointerException is the parameter is {@code null}.
 	 */
 	public static boolean containsOnlyDigits(final String str) {
 		if(str == null)
@@ -120,9 +120,9 @@ public class Utils {
 	 *
 	 * @param str the {@code String} to verify.
 	 * 
-	 * @throws NullPointerException is the parameter is {@code null}.
-	 *
 	 * @return return {@code true} only if contains only alphabetic values, {@code false} otherwise.
+	 *
+	 * @throws NullPointerException is the parameter is {@code null}.
 	 */
 	public static boolean containsOnlyAlphabetic(final String str) {
 		if(str == null)
