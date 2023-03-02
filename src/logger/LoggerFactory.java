@@ -10,6 +10,19 @@ package logger;
  */
 abstract class LoggerFactory {
 	
+	private static final Logger console_logger;
+	private static final Logger file_logger;
+	
+	static {
+		console_logger = new ConsoleLogger();
+		
+		Logger tmp_logger = null;
+		try {
+			tmp_logger = new FileLogger();
+		} catch(Exception e) { System.exit(1); }
+		file_logger = tmp_logger;
+	}
+	
 	/**
 	 * Return the selected Logger.
 	 *
@@ -21,9 +34,10 @@ abstract class LoggerFactory {
 		
 		switch(type)
 		{
-			case CONSOLE : return new ConsoleLogger();
+			case CONSOLE : return console_logger;
+			case FILE : return file_logger;
 		}
 		
-		return new ConsoleLogger();
+		return console_logger;
 	}
 }

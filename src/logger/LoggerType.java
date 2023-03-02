@@ -11,5 +11,10 @@ public enum LoggerType {
 	/**
 	 * Console based logger.
 	 */
-	CONSOLE
+	CONSOLE,
+	
+	/**
+	 * File based logger.
+	 */
+	FILE
 }
