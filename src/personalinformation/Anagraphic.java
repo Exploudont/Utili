@@ -9,9 +9,15 @@ import java.util.Locale;
  * 
  * @author Daniele Longobardi
  * @since 03/02/2023
- * @version 1.0.2
+ * @version 1.0.3
  */
 public class Anagraphic implements java.io.Serializable {
+
+
+	/**
+	 * Constructs a new empty {@code Anagraphic}.
+	 */
+	public Anagraphic() {}
 	
 	/**
 	 * Constructs a new {@code Anagraphic} specifying it's attributes.
@@ -96,7 +102,7 @@ public class Anagraphic implements java.io.Serializable {
 	 * @throws NullPointerException if the value is {@code null}.
 	 * @throws IllegalArgumentException if the value is an empty {@code String}.
 	 */
-	protected void setName(String name) {
+	public void setName(String name) {
 		if(name == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: name");
 		
@@ -116,7 +122,7 @@ public class Anagraphic implements java.io.Serializable {
 	 * @throws NullPointerException if the value is {@code null}.
 	 * @throws IllegalArgumentException if the value is an empty {@code String}.
 	 */
-	protected void setSurname(String surname) {
+	public void setSurname(String surname) {
 		if(surname == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: surname");
 		
@@ -136,7 +142,7 @@ public class Anagraphic implements java.io.Serializable {
 	 * @throws NullPointerException if the value is {@code null}.
 	 * @throws IllegalArgumentException if the value is not a valid {@code Date}.
 	 */
-	protected void setBirthday(Date birthday) {
+	public void setBirthday(Date birthday) {
 		if(birthday == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: birthday");
 		
@@ -154,7 +160,7 @@ public class Anagraphic implements java.io.Serializable {
 	 * @throws NullPointerException if the value is {@code null}.
 	 * @throws IllegalArgumentException if the value is not a valid fiscal code.
 	 */
-	protected void setFiscalCode(String fiscal_code) {		
+	public void setFiscalCode(String fiscal_code) {		
 		if(fiscal_code == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: fiscal_code");
 	
@@ -171,7 +177,7 @@ public class Anagraphic implements java.io.Serializable {
 	 *
 	 * @throws NullPointerException if the value is {@code null}.
 	 */
-	protected void setGender(Gender gender) {
+	public void setGender(Gender gender) {
 		if(gender == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: gender");
 		
@@ -182,11 +188,20 @@ public class Anagraphic implements java.io.Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("name> " + getName());
-		sb.append("\nsurname> " + getSurname());
-		sb.append("\nbirthday> " + BIRTHDAY_FORMAT.format(getBirthday()));
-		sb.append("\nfiscal code> " + getFiscalCode());
-		sb.append("\ngender> " + getGender().toString());
+		if(getName() != null)
+			sb.append("name> " + getName());
+		
+		if(getSurname() != null)
+			sb.append("\nsurname> " + getSurname());
+	
+		if(getBirthday() != null)
+			sb.append("\nbirthday> " + BIRTHDAY_FORMAT.format(getBirthday()));
+	
+		if(getFiscalCode() != null)
+			sb.append("\nfiscal code> " + getFiscalCode());
+	
+		if(getGender() != null)
+			sb.append("\ngender> " + getGender().toString());
 		
 		return sb.toString();
 	}

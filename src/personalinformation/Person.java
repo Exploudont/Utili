@@ -15,14 +15,14 @@ import java.util.Locale;
  * 
  * @author Daniele Longobardi
  * @since 02/02/2023
- * @version 1.0.1
+ * @version 1.0.2
  */
 public class Person implements java.io.Serializable {
 	
 	/**
 	 * Constructs a new empty {@code Person}.
 	 */
-	private Person() {
+	public Person() {
 		contacts = new ArrayList<Contact>();
 	}
 	
@@ -108,7 +108,7 @@ public class Person implements java.io.Serializable {
 	 *
 	 * @throw NullPointerException if the value is {@code null}.
 	 */
-	protected void setAnagraphic(Anagraphic anagraphic) {
+	public void setAnagraphic(Anagraphic anagraphic) {
 		if(anagraphic == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: anagraphic");
 		
@@ -122,7 +122,7 @@ public class Person implements java.io.Serializable {
 	 *
 	 * @throw NullPointerException if the value is {@code null}.
 	 */
-	protected void setAddress(Address address) {
+	public void setAddress(Address address) {
 		if(address == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: address");
 		
@@ -133,11 +133,15 @@ public class Person implements java.io.Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("== Anagraphic ==\n");
-		sb.append(getAnagraphic().toString());
+		if(getAnagraphic() != null) {
+			sb.append("== Anagraphic ==\n");
+			sb.append(getAnagraphic().toString());
+		}
 		
-		sb.append("\n== Address ==\n");
-		sb.append(getAddress().toString());
+		if(getAddress() != null) {
+			sb.append("\n== Address ==\n");
+			sb.append(getAddress().toString());
+		}
 		
 		for(Contact c : getContacts())
 			sb.append("\n== Contact ==\n" + c.toString());

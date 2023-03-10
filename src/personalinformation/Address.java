@@ -5,9 +5,14 @@ package personalinformation;
  *
  * @author Daniele Longobardi
  * @since 02/02/2023
- * @version 1.0.1
+ * @version 1.0.2
  */
 public class Address implements java.io.Serializable {
+	
+	/**
+	 * Constructs a new empty {@code Address}.
+	 */
+	public Address() {}
 	
 	/**
 	 * Constructs a new {@code Address} specifying it's attributes.
@@ -79,7 +84,7 @@ public class Address implements java.io.Serializable {
 	 * @throws NullPointerException if the value is {@code null}.
 	 * @throws IllegalArgumentException if the value is an empty {@code String}.
 	 */
-	protected void setStreet(String street) {
+	public void setStreet(String street) {
 		if(street == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: street");
 	
@@ -97,7 +102,7 @@ public class Address implements java.io.Serializable {
 	 * @throws NullPointerException if the value is {@code null}.
 	 * @throws IllegalArgumentException if the value is not a valid {@code String}.
 	 */
-	protected void setCAP(String cap) {
+	public void setCAP(String cap) {
 		if(cap == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: cap");
 	
@@ -115,7 +120,7 @@ public class Address implements java.io.Serializable {
 	 * @throws NullPointerException if the value is {@code null}.
 	 * @throws IllegalArgumentException if the value is an empty {@code String}.
 	 */
-	protected void setCity(String city) {
+	public void setCity(String city) {
 		if(city == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: city");
 	
@@ -133,7 +138,7 @@ public class Address implements java.io.Serializable {
 	 * @throws NullPointerException if the value is {@code null}.
 	 * @throws IllegalArgumentException if the value is an empty {@code String}.
 	 */
-	protected void setProvince(String province) {
+	public void setProvince(String province) {
 		if(province == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: province");
 	
@@ -151,7 +156,7 @@ public class Address implements java.io.Serializable {
 	 * @throws NullPointerException if the value is {@code null}.
 	 * @throws IllegalArgumentException if the value is an empty {@code String}.
 	 */
-	protected void setRegion(String region) {
+	public void setRegion(String region) {
 		if(region == null)
 			throw new NullPointerException("Value cannot be null. Parameter name: region");
 	
@@ -165,11 +170,20 @@ public class Address implements java.io.Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("street> " + getStreet());
-		sb.append("\nCAP> " + getCAP());
-		sb.append("\ncity> " + getCity());
-		sb.append("\nprovince> " + getProvince());
-		sb.append("\nregion> " + getRegion());
+		if(getStreet() != null)
+			sb.append("street> " + getStreet());
+		
+		if(getCAP() != null)
+			sb.append("\nCAP> " + getCAP());
+		
+		if(getCity() != null)
+			sb.append("\ncity> " + getCity());
+		
+		if(getProvince() != null)
+			sb.append("\nprovince> " + getProvince());
+		
+		if(getRegion() != null)
+			sb.append("\nregion> " + getRegion());
 		
 		return sb.toString();
 	}
